@@ -280,63 +280,26 @@ function App() {
       <section id="hero" className="relative pt-28 pb-16 md:pt-32 md:pb-20 px-4 md:px-6 overflow-hidden min-h-[90vh] flex items-center">
         <div className="absolute top-[10%] right-[5%] w-[300px] h-[300px] md:w-[500px] md:h-[500px] bg-[#0066ff]/10 rounded-full blur-[100px] md:blur-[120px] -z-10 animate-float" />
         
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 lg:gap-12 items-center w-full">
+        <div className="max-w-7xl mx-auto flex flex-col items-center justify-center w-full">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center lg:text-left mt-8 lg:mt-0"
+            className="text-center mt-8 lg:mt-0 w-full max-w-4xl flex flex-col items-center"
           >
-            <div className="inline-flex items-center justify-center lg:justify-start gap-2 px-3 py-1.5 rounded-full bg-[#0066ff]/10 border border-[#0066ff]/20 text-[#0066ff] text-[10px] md:text-xs font-bold tracking-widest uppercase mb-6">
+            <div className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-[#0066ff]/10 border border-[#0066ff]/20 text-[#0066ff] text-[10px] md:text-xs font-bold tracking-widest uppercase mb-6">
               <Rocket size={14} /> Équipe de Robotique d'Élite
             </div>
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 text-slate-900">
-              Concevoir <br className="hidden sm:block lg:hidden" /> l'<span className="text-gradient">Avenir</span> de <br />
+              Concevoir l'<span className="text-gradient">Avenir</span> de <br />
               <span className="text-slate-800 break-words">{title}</span>
             </h1>
-            <p className="text-base md:text-lg text-slate-600 mb-8 md:mb-10 max-w-lg mx-auto lg:mx-0 leading-relaxed">
+            <p className="text-base md:text-xl text-slate-600 mb-8 md:mb-10 max-w-2xl mx-auto leading-relaxed">
               Nous repoussons les limites de l'ingénierie mécanique et de l'intelligence artificielle pour offrir des solutions robotiques de nouvelle génération pour les compétitions mondiales.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <button className="px-6 py-3.5 md:py-4 rounded-2xl bg-slate-900 text-white font-bold flex items-center justify-center gap-2 hover:bg-slate-800 transition-all text-sm md:text-base border border-slate-800">
-                Explorer le Projet <ChevronDown size={20} />
-              </button>
-              <button className="px-6 py-3.5 md:py-4 rounded-2xl glass-card font-bold hover:bg-white text-slate-800 transition-all border border-slate-200 text-sm md:text-base">
-                Notre Robot
-              </button>
-            </div>
           </motion.div>
 
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1 }}
-            className="relative flex justify-center mt-8 lg:mt-0"
-          >
-            <div className="relative w-full max-w-[280px] sm:max-w-sm md:max-w-md aspect-square bg-gradient-to-br from-[#0066ff]/10 to-[#00b4d8]/10 rounded-3xl overflow-hidden border border-slate-200/60 flex items-center justify-center animate-float group shadow-xl shadow-[#0066ff]/5 bg-white/40">
-              <div className="absolute inset-0 bg-slate-50/40 group-hover:bg-transparent transition-all" />
-              <div className="flex flex-col items-center gap-4 text-slate-300 group-hover:text-[#0066ff]/50 transition-all">
-                <Cpu size={80} className="md:w-[120px] md:h-[120px]" strokeWidth={1} />
-                <p className="font-space text-xs md:text-sm tracking-widest">[ APERÇU DU ROBOT ]</p>
-              </div>
-            </div>
-            
-            <motion.div 
-              animate={{ y: [0, 10, 0] }}
-              transition={{ repeat: Infinity, duration: 4 }}
-              className="absolute -top-6 -right-2 md:-top-10 md:-right-10 glass-card p-3 md:p-4 rounded-xl md:rounded-2xl border border-slate-100"
-            >
-              <div className="flex items-center gap-2 md:gap-3">
-                <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-green-500/10 flex items-center justify-center border border-green-500/20">
-                  <div className="w-2 h-2 md:w-3 md:h-3 bg-green-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.6)]" />
-                </div>
-                <div>
-                  <div className="text-[8px] md:text-[10px] text-slate-500 font-bold uppercase tracking-tighter">État du Système</div>
-                  <div className="text-xs md:text-sm font-bold text-slate-800">OPÉRATIONNEL</div>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
+
         </div>
       </section>
 
