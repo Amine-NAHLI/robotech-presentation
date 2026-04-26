@@ -224,10 +224,10 @@ function App() {
   
   const jury = [
     { name: "Mme Salwa Senhaji", role: "Membre du Jury", image: "/images/jury1.png" },
-    { name: "Mme Imane Halkhams", role: "Membre du Jury", image: "/images/jury2.png" },
-    { name: "Mme Naouar Belghini", role: "Membre du Jury", image: "/images/jury3.png" },
     { name: "Mme Naoual Boukil", role: "Membre du Jury", image: "/images/jury4.jpeg" },
     { name: "Mme Sanae El Bouassi", role: "Membre du Jury", image: "/images/jury5.jpeg" },
+    { name: "Mme Naouar Belghini", role: "Membre du Jury", image: "/images/jury3.png" },
+    { name: "Mme Imane Halkhams", role: "Membre du Jury", image: "/images/jury2.png" },
     { name: "Mme Zineb Bounoua", role: "Membre du Jury", image: "/images/jury6.jpeg" },
     { name: "M. Saad Motahhir", role: "Membre du Jury", image: "/images/jury7.jpeg" },
   ]
@@ -279,8 +279,22 @@ function App() {
       </nav>
 
       {/* Hero Section */}
-      <section id="hero" className="relative pt-28 pb-16 md:pt-32 md:pb-20 px-4 md:px-6 overflow-hidden min-h-[90vh] flex items-center">
-        <div className="absolute top-[10%] right-[5%] w-[300px] h-[300px] md:w-[500px] md:h-[500px] bg-[#0066ff]/10 rounded-full blur-[100px] md:blur-[120px] -z-10 animate-float" />
+      <section id="hero" className="relative pt-28 pb-16 md:pt-32 md:pb-20 px-4 md:px-6 overflow-hidden min-h-[95vh] flex items-center">
+        {/* Video Background */}
+        <div className="absolute inset-0 -z-10">
+          <video 
+            autoPlay 
+            loop 
+            muted 
+            playsInline 
+            className="w-full h-full object-cover"
+          >
+            <source src="/videos/hero-bg.mp4" type="video/mp4" />
+          </video>
+          {/* Advanced Overlay for visibility */}
+          <div className="absolute inset-0 bg-white/70 backdrop-blur-[2px] md:bg-white/60" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white/90" />
+        </div>
         
         <div className="max-w-7xl mx-auto flex flex-col items-center justify-center w-full">
           <motion.div
