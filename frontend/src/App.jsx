@@ -37,14 +37,14 @@ const LinkedinIcon = ({ size = 24, className = "" }) => (
 
 const Logo = () => (
   <div className="flex items-center gap-2">
-    <div className="w-8 h-8 md:w-10 md:h-10 bg-gradient-to-br from-[#0066ff] to-[#00b4d8] rounded-xl flex items-center justify-center shadow-lg shadow-[#0066ff]/20">
-      <Cpu size={20} className="text-white md:w-6 md:h-6" />
+    <div className="w-8 h-8 md:w-10 md:h-10 rounded-xl bg-white overflow-hidden shadow-md border border-slate-100 flex items-center justify-center">
+      <img src="/images/logo.jpeg" alt="Robotech Logo" className="w-full h-full object-cover" />
     </div>
     <span className="text-xl md:text-2xl font-bold font-space tracking-tight text-slate-900">ROBO<span className="text-gradient">TECH</span></span>
   </div>
 )
 
-const TeamMember = ({ name, role, delay }) => (
+const TeamMember = ({ name, role, delay, image }) => (
   <motion.div 
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
@@ -52,18 +52,17 @@ const TeamMember = ({ name, role, delay }) => (
     transition={{ duration: 0.5, delay }}
     className="glass-card glow-on-hover p-6 rounded-2xl flex flex-col items-center text-center group"
   >
-    <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-slate-100 border-2 border-slate-200 overflow-hidden mb-4 group-hover:border-[#0066ff] transition-colors">
-      <div className="w-full h-full flex items-center justify-center text-slate-400 group-hover:text-[#0066ff] transition-colors">
-         <Users size={32} className="md:w-10 md:h-10" />
-      </div>
+    <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-slate-100 border-4 border-slate-200 overflow-hidden mb-4 group-hover:border-[#0066ff] transition-colors relative">
+      {image ? (
+        <img src={image} alt={name} className="w-full h-full object-cover" />
+      ) : (
+        <div className="w-full h-full flex items-center justify-center text-slate-400 group-hover:text-[#0066ff] transition-colors">
+           <Users size={32} className="md:w-10 md:h-10" />
+        </div>
+      )}
     </div>
     <h3 className="text-lg md:text-xl font-bold font-space mb-1 text-slate-800">{name}</h3>
-    <p className="text-gradient text-xs md:text-sm font-medium mb-4 uppercase tracking-wider">{role}</p>
-    <div className="flex gap-3 mt-auto">
-      <a href="#" className="p-2 rounded-lg bg-slate-50 hover:bg-[#0066ff]/10 text-slate-400 hover:text-[#0066ff] transition-all"><GithubIcon size={18} /></a>
-      <a href="#" className="p-2 rounded-lg bg-slate-50 hover:bg-[#00b4d8]/10 text-slate-400 hover:text-[#00b4d8] transition-all"><LinkedinIcon size={18} /></a>
-      <a href="#" className="p-2 rounded-lg bg-slate-50 hover:bg-[#9d4edd]/10 text-slate-400 hover:text-[#9d4edd] transition-all"><Mail size={18} /></a>
-    </div>
+    <p className="text-gradient text-xs md:text-sm font-medium uppercase tracking-wider">{role}</p>
   </motion.div>
 )
 
@@ -79,7 +78,8 @@ const ThreeScene = ({ modelPath }) => (
         </Center>
       </Bounds>
     </Suspense>
-    <OrbitControls autoRotate autoRotateSpeed={2} enableZoom={true} />
+    {/* Disabled zoom and pan to prevent scroll trapping on the webpage. Users must expand to zoom. */}
+    <OrbitControls autoRotate autoRotateSpeed={2} enableZoom={false} enablePan={false} />
   </Canvas>
 )
 
@@ -92,35 +92,59 @@ const MaterialCard = ({ title, description, modelPath, index, delay, onExpand })
       transition={{ duration: 0.5, delay: Math.min(delay, 0.6) }}
       className="w-full group"
     >
-      <div className="relative rounded-2xl border border-slate-200/80 bg-white shadow-sm hover:shadow-xl hover:shadow-[#0066ff]/5 transition-all duration-500 overflow-hidden">
+      <div className="relative rounded-3xl border border-slate-200/80 bg-white shadow-sm hover:shadow-xl hover:-translate-y-1 hover:shadow-[#0066ff]/10 transition-all duration-300 overflow-hidden group/card">
         {/* Number badge */}
-        <div className="absolute top-3 left-3 z-20 w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-gradient-to-br from-[#0066ff] to-[#00b4d8] flex items-center justify-center shadow-lg shadow-[#0066ff]/20">
-          <span className="text-white text-[10px] sm:text-xs font-bold">{String(index + 1).padStart(2, '0')}</span>
+        <div className="absolute top-4 left-4 z-20 w-8 h-8 rounded-lg bg-slate-900 flex items-center justify-center border border-slate-700 shadow-md">
+          <span className="text-[#00b4d8] text-xs font-mono font-bold tracking-wider">{String(index + 1).padStart(2, '0')}</span>
         </div>
         
         {/* Fullscreen button — always visible on mobile (no hover), hover-reveal on desktop */}
         <button 
           onClick={() => onExpand({ title, description, modelPath })}
-          className="absolute top-3 right-3 z-20 w-8 h-8 rounded-lg bg-white/80 backdrop-blur-md border border-slate-200 flex items-center justify-center text-slate-400 hover:text-[#0066ff] hover:bg-white hover:border-[#0066ff]/30 transition-all cursor-pointer shadow-sm md:opacity-0 md:group-hover:opacity-100"
+          className="absolute top-4 right-4 z-20 w-8 h-8 rounded-lg bg-white/80 backdrop-blur-md border border-slate-200 flex items-center justify-center text-slate-400 hover:text-[#0066ff] hover:bg-white hover:border-[#0066ff]/30 transition-all cursor-pointer shadow-sm md:opacity-0 md:group-hover:opacity-100"
           title="Plein écran"
         >
           <Maximize2 size={14} />
         </button>
 
-        {/* 3D Viewer — taller on mobile for better touch interaction */}
-        <div className="w-full h-[200px] sm:h-[220px]" style={{ background: 'linear-gradient(145deg, #f8fafc, #e2e8f0)' }}>
+        {/* 3D Viewer — Extra large with CAD blueprint background */}
+        <div 
+          className="relative w-full h-[280px] sm:h-[400px]" 
+          style={{ 
+            backgroundColor: '#f8fafc',
+            backgroundImage: 'linear-gradient(rgba(0, 102, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 102, 255, 0.05) 1px, transparent 1px)',
+            backgroundSize: '20px 20px',
+            backgroundPosition: '-1px -1px'
+          }}
+        >
           {modelPath && <ThreeScene modelPath={modelPath} />}
+          
+          {/* Subtle interaction hint overlay */}
+          <div className="absolute inset-x-0 bottom-4 flex justify-center pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            <span className="px-3 py-1.5 rounded-full bg-white/60 backdrop-blur border border-slate-200/50 text-xs font-medium text-slate-500 shadow-sm flex items-center gap-1.5">
+              <RotateCw size={12} className="animate-[spin_4s_linear_infinite]" /> Rotation manuelle
+            </span>
+          </div>
         </div>
         
         {/* Info */}
-        <div className="p-3 sm:p-4 border-t border-slate-100">
-          <div className="flex items-start justify-between gap-2">
+        <div className="p-5 sm:p-6 border-t border-slate-100 bg-white group-hover:bg-slate-50/50 transition-colors duration-300">
+          <div className="flex items-start justify-between gap-3">
             <div className="min-w-0">
-              <h3 className="text-xs sm:text-sm font-bold font-space text-slate-900 mb-0.5 sm:mb-1 leading-tight truncate">{title}</h3>
-              <p className="text-slate-400 text-[11px] sm:text-xs leading-relaxed line-clamp-2">{description}</p>
+              <h3 className="text-base sm:text-lg font-bold font-space text-slate-900 mb-1 leading-tight flex items-center gap-2">
+                {title} 
+                <span className="w-1.5 h-1.5 bg-[#00b4d8] rounded-full hidden sm:block"></span>
+              </h3>
+              <p className="text-slate-500 text-xs sm:text-sm leading-relaxed line-clamp-2 mt-1">{description}</p>
             </div>
             <div className="flex-shrink-0 mt-0.5">
-              <RotateCw size={14} className="text-slate-300" />
+              <button 
+                onClick={() => onExpand({ title, description, modelPath })}
+                className="w-8 h-8 rounded-full bg-slate-100 hover:bg-[#0066ff] hover:text-white flex items-center justify-center text-slate-400 transition-all cursor-pointer"
+                title="Agrandir ce composant"
+              >
+                <Maximize2 size={14} />
+              </button>
             </div>
           </div>
         </div>
@@ -198,19 +222,18 @@ function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [fullscreenItem, setFullscreenItem] = useState(null)
   
-  const team = [
-    { name: "Ahmed Ben Ali", role: "Chef d'Équipe / Mécanique" },
-    { name: "Sara Mansour", role: "Architecte Logiciel" },
-    { name: "Yassine Toumi", role: "Spécialiste en Électronique" },
-    { name: "Meriem Dridi", role: "Ingénieur IA & Vision" },
-    { name: "Omar Kassab", role: "Conception 3D & CAO" },
-    { name: "Lina Trabelsi", role: "Communication & Tech" },
+  const jury = [
+    { name: "Mme Salwa Senhaji", role: "Membre du Jury", image: "/images/jury1.png" },
+    { name: "Mme Imane Halkhams", role: "Membre du Jury", image: "/images/jury2.png" },
+    { name: "M. Naouar Belghini", role: "Membre du Jury", image: "/images/jury3.png" },
+    { name: "Mme Naoual Boukil", role: "Membre du Jury", image: "/images/jury4.jpeg" },
+    { name: "Mme Sanae El Bouassi", role: "Membre du Jury", image: "/images/jury5.jpeg" },
   ]
 
   const materials = [
     { title: "Écran OLED SSD1306", description: "Écran I2C 128x32 pour le diagnostic en temps réel du système.", modelPath: "/models/oled.glb" },
     { title: "Carte ESP32", description: "Microcontrôleur Wi-Fi/Bluetooth pour la communication et le contrôle intelligent.", modelPath: "/models/esp32.glb" },
-    { title: "Raspberry Pi 4B", description: "Mini-ordinateur embarqué pour le traitement IA et la vision par ordinateur.", modelPath: "/models/raspberry_pi_4b_-_pi.glb" },
+    { title: "Raspberry Pi 3B", description: "Mini-ordinateur embarqué pour le traitement IA et la vision par ordinateur.", modelPath: "/models/raspberry_pi_3_model_b.glb" },
     { title: "Moteur DC", description: "Moteur à courant continu pour la propulsion du robot.", modelPath: "/models/Moteur.glb" },
     { title: "Driver Moteur", description: "Module de puissance L298N pour le contrôle précis des moteurs.", modelPath: "/models/Driver_moteur.glb" },
     { title: "Servo Moteur", description: "Actionneur de précision pour les mécanismes et bras robotiques.", modelPath: "/models/serveau_moteur.glb" },
@@ -232,13 +255,9 @@ function App() {
           
           <div className="hidden md:flex gap-8 text-sm font-medium text-slate-600">
             <a href="#hero" className="hover:text-slate-900 transition-colors">Accueil</a>
-            <a href="#team" className="hover:text-slate-900 transition-colors">Équipe</a>
-            <a href="#vision" className="hover:text-slate-900 transition-colors">Vision</a>
+            <a href="#team" className="hover:text-slate-900 transition-colors">Jury</a>
+            <a href="#materials" className="hover:text-slate-900 transition-colors">Composants 3D</a>
           </div>
-          
-          <button className="hidden md:block px-6 py-2 rounded-xl bg-gradient-to-r from-[#0066ff] to-[#00b4d8] text-white font-bold shadow-lg shadow-[#0066ff]/20 hover:scale-105 transition-all">
-            Contactez-nous
-          </button>
 
           <button 
             className="md:hidden text-slate-800 p-2"
@@ -251,11 +270,8 @@ function App() {
         {isMobileMenuOpen && (
           <div className="md:hidden absolute top-full left-0 w-full bg-white/95 backdrop-blur-lg border-b border-slate-200 py-4 px-6 flex flex-col gap-2 shadow-xl">
             <a href="#hero" className="text-slate-700 font-medium py-3 border-b border-slate-100 active:text-[#0066ff]" onClick={() => setIsMobileMenuOpen(false)}>Accueil</a>
-            <a href="#team" className="text-slate-700 font-medium py-3 border-b border-slate-100 active:text-[#0066ff]" onClick={() => setIsMobileMenuOpen(false)}>Équipe</a>
+            <a href="#team" className="text-slate-700 font-medium py-3 border-b border-slate-100 active:text-[#0066ff]" onClick={() => setIsMobileMenuOpen(false)}>Jury</a>
             <a href="#materials" className="text-slate-700 font-medium py-3 border-b border-slate-100 active:text-[#0066ff]" onClick={() => setIsMobileMenuOpen(false)}>Composants 3D</a>
-            <button className="w-full mt-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#0066ff] to-[#00b4d8] text-white font-bold shadow-lg shadow-[#0066ff]/20">
-              Contactez-nous
-            </button>
           </div>
         )}
       </nav>
@@ -325,25 +341,29 @@ function App() {
       </section>
 
       {/* Team Section */}
-      <section id="team" className="py-16 md:py-24 px-4 md:px-6 relative bg-slate-50/50 border-t border-slate-100">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12 md:mb-20">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-space mb-4 text-slate-900">Les <span className="text-gradient">Innovateurs</span> de la machine</h2>
-            <p className="text-slate-600 text-sm md:text-base max-w-2xl mx-auto px-4">Notre équipe combine l'expertise en conception mécanique, en ingénierie électrique et en programmation avancée pour créer le meilleur robot pour la compétition.</p>
+      <section id="team" className="py-16 md:py-24 relative bg-slate-50/50 border-t border-slate-100">
+        <div className="w-full">
+          <div className="text-center mb-12 md:mb-20 max-w-7xl mx-auto px-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-space mb-4 text-slate-900">Membres du <span className="text-gradient">Jury</span></h2>
+            <p className="text-slate-600 text-sm md:text-base max-w-2xl mx-auto px-4">Nous avons l'honneur de présenter notre projet devant ce comité d'experts en conception mécanique et intelligence artificielle.</p>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-lg sm:max-w-none mx-auto">
-            {team.map((m, i) => (
-              <TeamMember key={i} name={m.name} role={m.role} delay={i * 0.1} />
+          <div className="flex flex-wrap justify-center gap-6 md:gap-8 w-full max-w-none px-4 lg:px-6 mx-auto">
+            {jury.map((m, i) => (
+              <div key={i} className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-22px)] flex">
+                <div className="w-full">
+                  <TeamMember name={m.name} role={m.role} image={m.image} delay={i * 0.1} />
+                </div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Materials / 3D Section */}
-      <section id="materials" className="py-12 sm:py-16 md:py-24 px-3 sm:px-4 md:px-6 relative bg-white/50 border-t border-slate-100">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12 md:mb-20">
+      <section id="materials" className="py-12 sm:py-16 md:py-24 relative bg-slate-50/50 border-t border-slate-100">
+        <div className="w-full">
+          <div className="text-center mb-12 md:mb-20 max-w-7xl mx-auto px-4">
             <div className="inline-flex items-center justify-center gap-2 px-3 py-1.5 rounded-full bg-[#00b4d8]/10 border border-[#00b4d8]/20 text-[#00b4d8] text-[10px] md:text-xs font-bold tracking-widest uppercase mb-4">
               Technologies Avancées
             </div>
@@ -355,7 +375,7 @@ function App() {
             </p>
           </div>
           
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 md:gap-5 mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 w-full max-w-none px-4 lg:px-6 mx-auto">
             {materials.map((mat, i) => (
               <MaterialCard 
                 key={i}
@@ -381,11 +401,6 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 md:px-6 flex flex-col items-center gap-4 sm:gap-6 md:flex-row md:justify-between md:gap-8">
           <Logo />
           <p className="text-slate-500 text-[10px] sm:text-xs md:text-sm text-center">© 2026 Présentation Robotech. Conçu pour l'Excellence.</p>
-          <div className="flex gap-5 sm:gap-4 md:gap-6 text-slate-500 text-xs sm:text-sm md:text-base font-medium">
-            <a href="#" className="hover:text-[#0066ff] transition-colors underline decoration-[#0066ff]/20 decoration-2 underline-offset-4">LinkedIn</a>
-            <a href="#" className="hover:text-[#00b4d8] transition-colors underline decoration-[#00b4d8]/20 decoration-2 underline-offset-4">GitHub</a>
-            <a href="#" className="hover:text-[#9d4edd] transition-colors underline decoration-[#9d4edd]/20 decoration-2 underline-offset-4">Instagram</a>
-          </div>
         </div>
       </footer>
     </div>
