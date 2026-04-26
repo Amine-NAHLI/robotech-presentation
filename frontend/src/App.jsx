@@ -228,6 +228,8 @@ function App() {
     { name: "M. Naouar Belghini", role: "Membre du Jury", image: "/images/jury3.png" },
     { name: "Mme Naoual Boukil", role: "Membre du Jury", image: "/images/jury4.jpeg" },
     { name: "Mme Sanae El Bouassi", role: "Membre du Jury", image: "/images/jury5.jpeg" },
+    { name: "Mme Zineb Bounoua", role: "Membre du Jury", image: "/images/jury6.jpeg" },
+    { name: "M. Saad Motahhir", role: "Membre du Jury", image: "/images/jury7.jpeg" },
   ]
 
   const materials = [
