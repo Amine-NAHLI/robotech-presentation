@@ -421,21 +421,20 @@ function App() {
       </section>
 
       {/* Technologies Section */}
-      <section id="technologies" className="py-20 md:py-28 relative bg-slate-950 border-t border-slate-800 overflow-hidden">
-        {/* Animated background grid */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:48px_48px] pointer-events-none" />
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#0066ff]/8 blur-[120px] rounded-full pointer-events-none" />
+      <section id="technologies" className="py-20 md:py-28 relative bg-white border-t border-slate-100 overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,#0066ff06,transparent_55%),radial-gradient(ellipse_at_bottom_left,#00b4d806,transparent_55%)] pointer-events-none" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#0066ff]/4 blur-[120px] rounded-full pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 md:px-8 relative">
           {/* Header */}
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} viewport={{ once: true }} className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[#00b4d8] text-xs font-bold tracking-widest uppercase mb-6">
-              <span className="w-2 h-2 rounded-full bg-[#00b4d8] animate-pulse" /> Stack Technique
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0066ff]/10 border border-[#0066ff]/20 text-[#0066ff] text-xs font-bold tracking-widest uppercase mb-6">
+              <span className="w-2 h-2 rounded-full bg-[#0066ff] animate-pulse" /> Stack Technique
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-space mb-4 text-white">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-space mb-4 text-slate-900">
               Technologies & <span className="text-gradient">Bibliothèques</span>
             </h2>
-            <p className="text-slate-400 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
+            <p className="text-slate-500 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
               L'ensemble des outils, frameworks et bibliothèques qui propulsent notre robot de compétition.
             </p>
           </motion.div>
@@ -449,7 +448,7 @@ function App() {
               { value: "100%", label: "Open Source", gradient: "from-green-500 to-emerald-400" },
               { value: "2026", label: "Compétition", gradient: "from-orange-500 to-amber-400" },
             ].map((s, i) => (
-              <div key={i} className="bg-white/5 border border-white/8 rounded-2xl p-5 backdrop-blur-sm">
+              <div key={i} className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
                 <div className={`text-2xl md:text-3xl font-extrabold font-space bg-gradient-to-r ${s.gradient} bg-clip-text text-transparent`}>{s.value}</div>
                 <div className="text-slate-500 text-[11px] font-semibold uppercase tracking-widest mt-1">{s.label}</div>
               </div>
@@ -515,7 +514,7 @@ function App() {
                 transition={{ duration: 0.55, delay: gi * 0.1 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -3 }}
-                className={`relative bg-white/4 border border-white/8 rounded-3xl overflow-hidden backdrop-blur-sm hover:shadow-2xl ${group.glow} ${group.border} transition-all duration-400`}
+                className={`relative bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl ${group.glow} ${group.border} transition-all duration-300`}
               >
                 {/* Card header */}
                 <div className={`bg-gradient-to-br ${group.gradient} p-6 relative overflow-hidden`}>
@@ -544,8 +543,8 @@ function App() {
                         </svg>
                       </div>
                       <div className="flex-1 min-w-0">
-                        <span className="text-white text-sm font-semibold">{tech.name}</span>
-                        <span className="text-slate-500 text-xs ml-2 hidden sm:inline">{tech.desc}</span>
+                        <span className="text-slate-800 text-sm font-semibold">{tech.name}</span>
+                        <span className="text-slate-400 text-xs ml-2 hidden sm:inline">{tech.desc}</span>
                       </div>
                     </div>
                   ))}
