@@ -280,7 +280,7 @@ function App() {
           <Logo />
           
           <div className="hidden md:flex gap-8 text-sm font-medium">
-            {[['#hero','Accueil','hero'],['#technologies','Technologies','technologies'],['#team','Jury','team'],['#materials','Composants 3D','materials']].map(([href, label, id]) => (
+            {[['#hero','Accueil','hero'],['#team','Jury','team'],['#materials','Composants 3D','materials'],['#technologies','Technologies','technologies']].map(([href, label, id]) => (
               <a
                 key={id}
                 href={href}
@@ -308,7 +308,7 @@ function App() {
 
         {isMobileMenuOpen && (
           <div className="md:hidden absolute top-full left-0 w-full bg-white/98 backdrop-blur-xl border-b border-slate-200 py-4 px-6 flex flex-col gap-1 shadow-2xl">
-            {[['#hero','Accueil','hero'],['#technologies','Technologies','technologies'],['#team','Jury','team'],['#materials','Composants 3D','materials']].map(([href, label, id]) => (
+            {[['#hero','Accueil','hero'],['#team','Jury','team'],['#materials','Composants 3D','materials'],['#technologies','Technologies','technologies']].map(([href, label, id]) => (
               <a
                 key={id}
                 href={href}
