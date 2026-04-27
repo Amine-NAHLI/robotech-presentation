@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Suspense } from 'react'
 import { motion } from 'framer-motion'
-import { Users, Rocket, Cpu, Mail, ChevronDown, Menu, X, Maximize2, RotateCw } from 'lucide-react'
+import { Users, Rocket, Cpu, Mail, ChevronDown, Menu, X, Maximize2, RotateCw, BrainCircuit, Wifi, Wrench } from 'lucide-react'
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls, useGLTF, Center, Bounds, Html, useProgress } from '@react-three/drei'
 
@@ -459,7 +459,7 @@ function App() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 w-full max-w-none px-4 lg:px-6 mx-auto">
             {[
               {
-                category: "IA & Vision par Ordinateur", emoji: "🤖", num: "01",
+                category: "IA & Vision par Ordinateur", icon: <BrainCircuit size={44} strokeWidth={1.5} />, num: "01",
                 gradient: "from-purple-600 to-pink-500",
                 glow: "hover:shadow-purple-100",
                 border: "hover:border-purple-300",
@@ -471,7 +471,7 @@ function App() {
                 ]
               },
               {
-                category: "Communication & Réseau", emoji: "📡", num: "02",
+                category: "Communication & Réseau", icon: <Wifi size={44} strokeWidth={1.5} />, num: "02",
                 gradient: "from-green-600 to-emerald-400",
                 glow: "hover:shadow-green-900/40",
                 border: "hover:border-green-500/30",
@@ -483,7 +483,7 @@ function App() {
                 ]
               },
               {
-                category: "Logiciels & Outils", emoji: "🛠️", num: "03",
+                category: "Logiciels & Outils", icon: <Wrench size={44} strokeWidth={1.5} />, num: "03",
                 gradient: "from-orange-500 to-amber-400",
                 glow: "hover:shadow-orange-900/40",
                 border: "hover:border-orange-500/30",
@@ -512,7 +512,7 @@ function App() {
                       <span className="text-white/60 text-xs font-mono font-bold tracking-widest">{group.num} / 03</span>
                       <h3 className="text-white text-xl md:text-2xl font-bold font-space mt-1">{group.category}</h3>
                     </div>
-                    <span className="text-4xl md:text-5xl opacity-80 select-none">{group.emoji}</span>
+                    <span className="opacity-90 select-none text-white/90 drop-shadow-sm">{group.icon}</span>
                   </div>
                   <div className="mt-4 flex items-center gap-1.5">
                     {group.items.map((_, i) => (
