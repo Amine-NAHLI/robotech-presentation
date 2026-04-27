@@ -227,7 +227,7 @@ function App() {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50)
-      const sections = ['hero', 'technologies', 'team', 'materials']
+      const sections = ['hero', 'team', 'materials', 'technologies']
       for (const id of sections.reverse()) {
         const el = document.getElementById(id)
         if (el && window.scrollY >= el.offsetTop - 120) {
@@ -368,6 +368,58 @@ function App() {
         </div>
       </section>
 
+
+      {/* Team Section */}
+      <section id="team" className="py-16 md:py-24 relative bg-slate-50/50 border-t border-slate-100">
+        <div className="w-full">
+          <div className="text-center mb-12 md:mb-20 max-w-7xl mx-auto px-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-space mb-4 text-slate-900">Membres du <span className="text-gradient">Jury</span></h2>
+            <p className="text-slate-600 text-sm md:text-base max-w-2xl mx-auto px-4">Nous avons l'honneur de présenter notre projet devant ce comité d'experts en conception mécanique et intelligence artificielle.</p>
+          </div>
+          
+          <div className="flex flex-wrap justify-center gap-6 md:gap-8 w-full max-w-none px-4 lg:px-6 mx-auto">
+            {jury.map((m, i) => (
+              <div key={i} className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-22px)] flex">
+                <div className="w-full">
+                  <TeamMember name={m.name} role={m.role} image={m.image} delay={i * 0.1} />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Materials / 3D Section */}
+      <section id="materials" className="py-12 sm:py-16 md:py-24 relative bg-slate-50/50 border-t border-slate-100">
+        <div className="w-full">
+          <div className="text-center mb-12 md:mb-20 max-w-7xl mx-auto px-4">
+            <div className="inline-flex items-center justify-center gap-2 px-3 py-1.5 rounded-full bg-[#00b4d8]/10 border border-[#00b4d8]/20 text-[#00b4d8] text-[10px] md:text-xs font-bold tracking-widest uppercase mb-4">
+              Technologies Avancées
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-space mb-4 text-slate-900">
+              Matériaux & <span className="text-gradient">Équipements</span>
+            </h2>
+            <p className="text-slate-600 text-sm md:text-base max-w-2xl mx-auto px-4">
+              Découvrez les 13 composants clés de notre robot, modélisés en 3D interactive. Cliquez et faites glisser pour explorer chaque pièce.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 w-full max-w-none px-4 lg:px-6 mx-auto">
+            {materials.map((mat, i) => (
+              <MaterialCard 
+                key={i}
+                index={i}
+                title={mat.title} 
+                description={mat.description} 
+                modelPath={mat.modelPath}
+                delay={i * 0.08} 
+                onExpand={setFullscreenItem}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Technologies Section */}
       <section id="technologies" className="py-16 md:py-24 relative bg-white border-t border-slate-100 overflow-hidden">
         {/* Background decoration */}
@@ -468,57 +520,6 @@ function App() {
               </div>
             </motion.div>
           ))}
-        </div>
-      </section>
-
-      {/* Team Section */}
-      <section id="team" className="py-16 md:py-24 relative bg-slate-50/50 border-t border-slate-100">
-        <div className="w-full">
-          <div className="text-center mb-12 md:mb-20 max-w-7xl mx-auto px-4">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-space mb-4 text-slate-900">Membres du <span className="text-gradient">Jury</span></h2>
-            <p className="text-slate-600 text-sm md:text-base max-w-2xl mx-auto px-4">Nous avons l'honneur de présenter notre projet devant ce comité d'experts en conception mécanique et intelligence artificielle.</p>
-          </div>
-          
-          <div className="flex flex-wrap justify-center gap-6 md:gap-8 w-full max-w-none px-4 lg:px-6 mx-auto">
-            {jury.map((m, i) => (
-              <div key={i} className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-22px)] flex">
-                <div className="w-full">
-                  <TeamMember name={m.name} role={m.role} image={m.image} delay={i * 0.1} />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Materials / 3D Section */}
-      <section id="materials" className="py-12 sm:py-16 md:py-24 relative bg-slate-50/50 border-t border-slate-100">
-        <div className="w-full">
-          <div className="text-center mb-12 md:mb-20 max-w-7xl mx-auto px-4">
-            <div className="inline-flex items-center justify-center gap-2 px-3 py-1.5 rounded-full bg-[#00b4d8]/10 border border-[#00b4d8]/20 text-[#00b4d8] text-[10px] md:text-xs font-bold tracking-widest uppercase mb-4">
-              Technologies Avancées
-            </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-space mb-4 text-slate-900">
-              Matériaux & <span className="text-gradient">Équipements</span>
-            </h2>
-            <p className="text-slate-600 text-sm md:text-base max-w-2xl mx-auto px-4">
-              Découvrez les 13 composants clés de notre robot, modélisés en 3D interactive. Cliquez et faites glisser pour explorer chaque pièce.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 w-full max-w-none px-4 lg:px-6 mx-auto">
-            {materials.map((mat, i) => (
-              <MaterialCard 
-                key={i}
-                index={i}
-                title={mat.title} 
-                description={mat.description} 
-                modelPath={mat.modelPath}
-                delay={i * 0.08} 
-                onExpand={setFullscreenItem}
-              />
-            ))}
-          </div>
         </div>
       </section>
 
