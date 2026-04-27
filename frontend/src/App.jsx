@@ -421,47 +421,49 @@ function App() {
       </section>
 
       {/* Technologies Section */}
-      <section id="technologies" className="py-16 md:py-24 relative bg-slate-50 border-t border-slate-100 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,#0066ff06,transparent_55%),radial-gradient(ellipse_at_bottom_left,#00b4d806,transparent_55%)] pointer-events-none" />
-        
-        <div className="max-w-7xl mx-auto px-4 md:px-8">
+      <section id="technologies" className="py-20 md:py-28 relative bg-slate-950 border-t border-slate-800 overflow-hidden">
+        {/* Animated background grid */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:48px_48px] pointer-events-none" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#0066ff]/8 blur-[120px] rounded-full pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-4 md:px-8 relative">
           {/* Header */}
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }} className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0066ff]/10 border border-[#0066ff]/20 text-[#0066ff] text-xs font-bold tracking-widest uppercase mb-5">
-              <span className="w-2 h-2 rounded-full bg-[#0066ff] animate-pulse" /> Stack Technique
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} viewport={{ once: true }} className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[#00b4d8] text-xs font-bold tracking-widest uppercase mb-6">
+              <span className="w-2 h-2 rounded-full bg-[#00b4d8] animate-pulse" /> Stack Technique
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-space mb-4 text-slate-900">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-space mb-4 text-white">
               Technologies & <span className="text-gradient">Bibliothèques</span>
             </h2>
-            <p className="text-slate-500 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
+            <p className="text-slate-400 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
               L'ensemble des outils, frameworks et bibliothèques qui propulsent notre robot de compétition.
             </p>
           </motion.div>
 
-          {/* Stats strip */}
-          <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }} viewport={{ once: true }}
-            className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-14">
+          {/* Stats row */}
+          <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.15 }} viewport={{ once: true }}
+            className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-12">
             {[
-              { value: "4", label: "Catégories", color: "text-blue-600", bar: "from-blue-500 to-cyan-500" },
-              { value: "16", label: "Technologies", color: "text-purple-600", bar: "from-purple-500 to-pink-500" },
-              { value: "100%", label: "Open Source", color: "text-green-600", bar: "from-green-500 to-emerald-500" },
-              { value: "2026", label: "Compétition", color: "text-orange-600", bar: "from-orange-500 to-amber-500" },
+              { value: "4", label: "Catégories", gradient: "from-blue-500 to-cyan-400" },
+              { value: "16", label: "Technologies", gradient: "from-purple-500 to-pink-400" },
+              { value: "100%", label: "Open Source", gradient: "from-green-500 to-emerald-400" },
+              { value: "2026", label: "Compétition", gradient: "from-orange-500 to-amber-400" },
             ].map((s, i) => (
-              <div key={i} className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm flex flex-col gap-1">
-                <div className={`text-2xl md:text-3xl font-extrabold font-space ${s.color}`}>{s.value}</div>
-                <div className="text-slate-500 text-xs font-semibold uppercase tracking-wider">{s.label}</div>
-                <div className={`h-1 rounded-full bg-gradient-to-r ${s.bar} mt-2 opacity-60`} />
+              <div key={i} className="bg-white/5 border border-white/8 rounded-2xl p-5 backdrop-blur-sm">
+                <div className={`text-2xl md:text-3xl font-extrabold font-space bg-gradient-to-r ${s.gradient} bg-clip-text text-transparent`}>{s.value}</div>
+                <div className="text-slate-500 text-[11px] font-semibold uppercase tracking-widest mt-1">{s.label}</div>
               </div>
             ))}
           </motion.div>
 
-          {/* Tech groups */}
-          <div className="space-y-10">
+          {/* Bento 2x2 panel grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
             {[
               {
-                category: "Systèmes Embarqués", emoji: "🔌",
-                color: "from-blue-500 to-cyan-500", glow: "hover:shadow-blue-100",
-                tag: "bg-blue-50 text-blue-700 border-blue-200",
+                category: "Systèmes Embarqués", emoji: "🔌", num: "01",
+                gradient: "from-blue-600 to-cyan-500",
+                glow: "hover:shadow-blue-900/40",
+                border: "hover:border-blue-500/30",
                 items: [
                   { name: "Arduino IDE", desc: "Programmation microcontrôleurs" },
                   { name: "ESP-IDF", desc: "SDK officiel ESP32" },
@@ -470,9 +472,10 @@ function App() {
                 ]
               },
               {
-                category: "IA & Vision par Ordinateur", emoji: "🤖",
-                color: "from-purple-500 to-pink-500", glow: "hover:shadow-purple-100",
-                tag: "bg-purple-50 text-purple-700 border-purple-200",
+                category: "IA & Vision par Ordinateur", emoji: "🤖", num: "02",
+                gradient: "from-purple-600 to-pink-500",
+                glow: "hover:shadow-purple-900/40",
+                border: "hover:border-purple-500/30",
                 items: [
                   { name: "OpenCV", desc: "Traitement d'images en temps réel" },
                   { name: "TensorFlow Lite", desc: "Inférence ML embarquée" },
@@ -481,9 +484,10 @@ function App() {
                 ]
               },
               {
-                category: "Communication & Réseau", emoji: "📡",
-                color: "from-green-500 to-emerald-500", glow: "hover:shadow-green-100",
-                tag: "bg-green-50 text-green-700 border-green-200",
+                category: "Communication & Réseau", emoji: "📡", num: "03",
+                gradient: "from-green-600 to-emerald-400",
+                glow: "hover:shadow-green-900/40",
+                border: "hover:border-green-500/30",
                 items: [
                   { name: "MQTT", desc: "Protocole IoT léger" },
                   { name: "Wi-Fi (ESP32)", desc: "Connexion sans fil" },
@@ -492,9 +496,10 @@ function App() {
                 ]
               },
               {
-                category: "Logiciels & Outils", emoji: "🛠️",
-                color: "from-orange-500 to-amber-500", glow: "hover:shadow-orange-100",
-                tag: "bg-orange-50 text-orange-700 border-orange-200",
+                category: "Logiciels & Outils", emoji: "🛠️", num: "04",
+                gradient: "from-orange-500 to-amber-400",
+                glow: "hover:shadow-orange-900/40",
+                border: "hover:border-orange-500/30",
                 items: [
                   { name: "VS Code", desc: "Éditeur de code principal" },
                   { name: "Git & GitHub", desc: "Versioning & collaboration" },
@@ -503,36 +508,46 @@ function App() {
                 ]
               },
             ].map((group, gi) => (
-              <motion.div key={gi} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: gi * 0.08 }} viewport={{ once: true }}>
-                {/* Category header */}
-                <div className="flex items-center gap-3 mb-5">
-                  <span className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-xl border text-xs font-bold tracking-wide ${group.tag}`}>
-                    <span>{group.emoji}</span> {group.category}
-                  </span>
-                  <div className={`flex-1 h-px bg-gradient-to-r ${group.color} opacity-20`} />
-                  <span className="text-xs text-slate-400 font-medium">{group.items.length} outils</span>
+              <motion.div
+                key={gi}
+                initial={{ opacity: 0, y: 28 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: gi * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -3 }}
+                className={`relative bg-white/4 border border-white/8 rounded-3xl overflow-hidden backdrop-blur-sm hover:shadow-2xl ${group.glow} ${group.border} transition-all duration-400`}
+              >
+                {/* Card header */}
+                <div className={`bg-gradient-to-br ${group.gradient} p-6 relative overflow-hidden`}>
+                  <div className="absolute inset-0 opacity-20 bg-[linear-gradient(135deg,rgba(255,255,255,0.2)_0%,transparent_60%)]" />
+                  <div className="flex items-start justify-between relative">
+                    <div>
+                      <span className="text-white/60 text-xs font-mono font-bold tracking-widest">{group.num} / 04</span>
+                      <h3 className="text-white text-xl md:text-2xl font-bold font-space mt-1">{group.category}</h3>
+                    </div>
+                    <span className="text-4xl md:text-5xl opacity-80 select-none">{group.emoji}</span>
+                  </div>
+                  <div className="mt-4 flex items-center gap-1.5">
+                    {group.items.map((_, i) => (
+                      <div key={i} className="flex-1 h-1 rounded-full bg-white/30" />
+                    ))}
+                  </div>
                 </div>
 
-                {/* Cards grid */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 md:gap-4">
+                {/* Tech list */}
+                <div className="p-5 space-y-3">
                   {group.items.map((tech, ti) => (
-                    <motion.div
-                      key={ti}
-                      whileHover={{ y: -5 }}
-                      transition={{ type: "spring", stiffness: 350, damping: 20 }}
-                      className={`relative bg-white border border-slate-200 rounded-2xl p-4 md:p-5 flex flex-col gap-3 shadow-sm hover:shadow-xl hover:border-slate-300 transition-all duration-300 cursor-default overflow-hidden group ${group.glow}`}
-                    >
-                      {/* Top accent bar */}
-                      <div className={`absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r ${group.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
-                      {/* Number badge */}
-                      <div className={`w-7 h-7 rounded-lg bg-gradient-to-br ${group.color} flex items-center justify-center text-white text-[10px] font-extrabold shadow-sm`}>
-                        {String(ti + 1).padStart(2, '0')}
+                    <div key={ti} className="flex items-center gap-3 group/item">
+                      <div className={`w-6 h-6 rounded-md bg-gradient-to-br ${group.gradient} opacity-80 flex items-center justify-center flex-shrink-0`}>
+                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                          <path d="M2 5l2 2 4-4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
                       </div>
-                      <div>
-                        <p className="font-bold text-slate-800 text-sm md:text-base leading-tight">{tech.name}</p>
-                        <p className="text-slate-400 text-xs leading-snug mt-1">{tech.desc}</p>
+                      <div className="flex-1 min-w-0">
+                        <span className="text-white text-sm font-semibold">{tech.name}</span>
+                        <span className="text-slate-500 text-xs ml-2 hidden sm:inline">{tech.desc}</span>
                       </div>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
               </motion.div>
