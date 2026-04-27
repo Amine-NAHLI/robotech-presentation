@@ -1,4 +1,4 @@
-import React, { useState, Suspense } from 'react'
+import React, { useState, useEffect, Suspense } from 'react'
 import { motion } from 'framer-motion'
 import { Users, Rocket, Cpu, Mail, ChevronDown, Menu, X, Maximize2, RotateCw } from 'lucide-react'
 import { Canvas } from '@react-three/fiber'
@@ -221,13 +221,31 @@ function App() {
   const [title] = useState("COMPÉTITION ROBOTECH 2026")
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [fullscreenItem, setFullscreenItem] = useState(null)
+  const [scrolled, setScrolled] = useState(false)
+  const [activeSection, setActiveSection] = useState('hero')
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50)
+      const sections = ['hero', 'team', 'materials']
+      for (const id of sections.reverse()) {
+        const el = document.getElementById(id)
+        if (el && window.scrollY >= el.offsetTop - 120) {
+          setActiveSection(id)
+          break
+        }
+      }
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
   
   const jury = [
     { name: "Mme Salwa Senhaji", role: "Membre du Jury", image: "/images/jury1.png" },
-    { name: "Mme Naoual Boukil", role: "Membre du Jury", image: "/images/jury4.jpeg" },
-    { name: "Mme Sanae El Bouassi", role: "Membre du Jury", image: "/images/jury5.jpeg" },
-    { name: "Mme Naouar Belghini", role: "Membre du Jury", image: "/images/jury3.png" },
-    { name: "Mme Imane Halkhams", role: "Membre du Jury", image: "/images/jury2.png" },
+    { name: "Mme Naouar Belghini", role: "Membre du Jury", image: "/images/jury4.jpeg" },
+    { name: "Mme Imane Halkhams", role: "Membre du Jury", image: "/images/jury5.jpeg" },
+    { name: "Mme Sanae El Bouassi", role: "Membre du Jury", image: "/images/jury3.png" },
+    { name: "Mme Naoual Boukil", role: "Membre du Jury", image: "/images/jury2.png" },
     { name: "Mme Zineb Bounoua", role: "Membre du Jury", image: "/images/jury6.jpeg" },
     { name: "M. Saad Motahhir", role: "Membre du Jury", image: "/images/jury7.jpeg" },
   ]
@@ -235,34 +253,53 @@ function App() {
   const materials = [
     { title: "Écran OLED SSD1306", description: "Écran I2C 128x32 pour le diagnostic en temps réel du système.", modelPath: "/models/oled.glb" },
     { title: "Carte ESP32", description: "Microcontrôleur Wi-Fi/Bluetooth pour la communication et le contrôle intelligent.", modelPath: "/models/esp32.glb" },
-    { title: "Raspberry Pi 3B", description: "Mini-ordinateur embarqué pour le traitement IA et la vision par ordinateur.", modelPath: "/models/raspberry_pi_3_model_b.glb" },
+    { title: "Raspberry Pi 4B", description: "Mini-ordinateur embarqué pour le traitement IA et la vision par ordinateur.", modelPath: "/models/raspberry_pi_3_model_b.glb" },
     { title: "Moteur DC", description: "Moteur à courant continu pour la propulsion du robot.", modelPath: "/models/Moteur.glb" },
     { title: "Driver Moteur", description: "Module de puissance L298N pour le contrôle précis des moteurs.", modelPath: "/models/Driver_moteur.glb" },
     { title: "Servo Moteur", description: "Actionneur de précision pour les mécanismes et bras robotiques.", modelPath: "/models/serveau_moteur.glb" },
     { title: "Capteur Ultrason", description: "Détection d'obstacles et mesure de distance par ondes ultrasoniques.", modelPath: "/models/UltraSon.glb" },
     { title: "Module GPS", description: "Géolocalisation en temps réel pour la navigation autonome.", modelPath: "/models/gps_module.glb" },
     { title: "Suiveur de Ligne", description: "Capteur infrarouge pour le suivi automatique de trajectoire.", modelPath: "/models/suiveur_de_ligne.glb" },
-    { title: "Capteur de Ligne Arduino", description: "Détecteur analogique de ligne pour parcours de compétition.", modelPath: "/models/arduino_analog_line_sensor.glb" },
+    // { title: "Capteur de Ligne Arduino", description: "Détecteur analogique de ligne pour parcours de compétition.", modelPath: "/models/arduino_analog_line_sensor.glb" },
     { title: "Breadboard Arduino", description: "Platine d'expérimentation pour le prototypage rapide des circuits.", modelPath: "/models/arduino_breadboard_-_low_poly.glb" },
     { title: "Batterie LiPo", description: "Source d'alimentation rechargeable haute capacité pour l'autonomie.", modelPath: "/models/Batrie.glb" },
     { title: "Roue Motrice", description: "Roue caoutchoutée pour l'adhérence et la mobilité sur tout terrain.", modelPath: "/models/roue.glb" },
+    { title: "Powerbank", description: "Batterie externe portable pour l'alimentation autonome des modules.", modelPath: "/models/htc_powerbank_low_poly.glb" },
+    { title: "Caméra Raspberry Pi", description: "Module caméra v2.1 pour la vision par ordinateur et la détection d'objets.", modelPath: "/models/raspberry_pi_cam_v2.1.glb" },
   ]
 
   return (
     <div className="min-h-screen selection:bg-[#0066ff]/20 selection:text-slate-900">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 px-4 py-4 md:px-6 border-b border-black/5 backdrop-blur-md bg-white/80">
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        scrolled
+          ? 'py-2 md:py-3 px-4 md:px-6 bg-white/95 backdrop-blur-xl shadow-lg shadow-slate-900/10 border-b border-slate-200/80'
+          : 'py-4 md:py-5 px-4 md:px-6 bg-white/80 backdrop-blur-md border-b border-black/5'
+      }`}>
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <Logo />
           
-          <div className="hidden md:flex gap-8 text-sm font-medium text-slate-600">
-            <a href="#hero" className="hover:text-slate-900 transition-colors">Accueil</a>
-            <a href="#team" className="hover:text-slate-900 transition-colors">Jury</a>
-            <a href="#materials" className="hover:text-slate-900 transition-colors">Composants 3D</a>
+          <div className="hidden md:flex gap-8 text-sm font-medium">
+            {[['#hero','Accueil','hero'],['#team','Jury','team'],['#materials','Composants 3D','materials']].map(([href, label, id]) => (
+              <a
+                key={id}
+                href={href}
+                className={`relative py-1 transition-colors duration-200 ${
+                  activeSection === id
+                    ? 'text-[#0066ff]'
+                    : 'text-slate-500 hover:text-slate-900'
+                }`}
+              >
+                {label}
+                {activeSection === id && (
+                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-[#0066ff] to-[#00b4d8] rounded-full" />
+                )}
+              </a>
+            ))}
           </div>
 
           <button 
-            className="md:hidden text-slate-800 p-2"
+            className="md:hidden text-slate-800 p-2 rounded-lg hover:bg-slate-100 transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -270,10 +307,22 @@ function App() {
         </div>
 
         {isMobileMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 w-full bg-white/95 backdrop-blur-lg border-b border-slate-200 py-4 px-6 flex flex-col gap-2 shadow-xl">
-            <a href="#hero" className="text-slate-700 font-medium py-3 border-b border-slate-100 active:text-[#0066ff]" onClick={() => setIsMobileMenuOpen(false)}>Accueil</a>
-            <a href="#team" className="text-slate-700 font-medium py-3 border-b border-slate-100 active:text-[#0066ff]" onClick={() => setIsMobileMenuOpen(false)}>Jury</a>
-            <a href="#materials" className="text-slate-700 font-medium py-3 border-b border-slate-100 active:text-[#0066ff]" onClick={() => setIsMobileMenuOpen(false)}>Composants 3D</a>
+          <div className="md:hidden absolute top-full left-0 w-full bg-white/98 backdrop-blur-xl border-b border-slate-200 py-4 px-6 flex flex-col gap-1 shadow-2xl">
+            {[['#hero','Accueil','hero'],['#team','Jury','team'],['#materials','Composants 3D','materials']].map(([href, label, id]) => (
+              <a
+                key={id}
+                href={href}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={`flex items-center gap-3 py-3 px-3 rounded-xl font-medium transition-all ${
+                  activeSection === id
+                    ? 'bg-[#0066ff]/10 text-[#0066ff]'
+                    : 'text-slate-700 hover:bg-slate-50'
+                }`}
+              >
+                {activeSection === id && <span className="w-1.5 h-1.5 rounded-full bg-[#0066ff]" />}
+                {label}
+              </a>
+            ))}
           </div>
         )}
       </nav>
