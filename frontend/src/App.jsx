@@ -443,10 +443,10 @@ function App() {
           <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.15 }} viewport={{ once: true }}
             className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-12 max-w-7xl mx-auto px-4">
             {[
-              { value: "3", label: "Catégories", gradient: "from-blue-500 to-cyan-400" },
-              { value: "12", label: "Technologies", gradient: "from-purple-500 to-pink-400" },
-              { value: "100%", label: "Open Source", gradient: "from-green-500 to-emerald-400" },
-              { value: "2026", label: "Compétition", gradient: "from-orange-500 to-amber-400" },
+              { value: "3", label: "Catégories", gradient: "from-[#0066ff] to-[#00b4d8]" },
+              { value: "12", label: "Technologies", gradient: "from-[#0066ff] to-[#00b4d8]" },
+              { value: "100%", label: "Open Source", gradient: "from-[#0066ff] to-[#00b4d8]" },
+              { value: "2026", label: "Compétition", gradient: "from-[#0066ff] to-[#00b4d8]" },
             ].map((s, i) => (
               <div key={i} className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
                 <div className={`text-2xl md:text-3xl font-extrabold font-space bg-gradient-to-r ${s.gradient} bg-clip-text text-transparent`}>{s.value}</div>
@@ -460,9 +460,9 @@ function App() {
             {[
               {
                 category: "IA & Vision par Ordinateur", icon: <BrainCircuit size={44} strokeWidth={1.5} />, num: "01",
-                gradient: "from-purple-600 to-pink-500",
-                glow: "hover:shadow-purple-100",
-                border: "hover:border-purple-300",
+                gradient: "from-[#0066ff] to-[#00b4d8]",
+                glow: "hover:shadow-[#0066ff]/20",
+                border: "hover:border-[#00b4d8]/40",
                 items: [
                   { name: "OpenCV", desc: "Traitement d'images en temps réel" },
                   { name: "TensorFlow Lite", desc: "Inférence ML embarquée" },
@@ -472,9 +472,9 @@ function App() {
               },
               {
                 category: "Communication & Réseau", icon: <Wifi size={44} strokeWidth={1.5} />, num: "02",
-                gradient: "from-green-600 to-emerald-400",
-                glow: "hover:shadow-green-900/40",
-                border: "hover:border-green-500/30",
+                gradient: "from-[#0066ff] to-[#00b4d8]",
+                glow: "hover:shadow-[#00b4d8]/20",
+                border: "hover:border-[#0066ff]/40",
                 items: [
                   { name: "MQTT", desc: "Protocole IoT léger" },
                   { name: "Wi-Fi (ESP32)", desc: "Connexion sans fil" },
@@ -484,9 +484,9 @@ function App() {
               },
               {
                 category: "Logiciels & Outils", icon: <Wrench size={44} strokeWidth={1.5} />, num: "03",
-                gradient: "from-orange-500 to-amber-400",
-                glow: "hover:shadow-orange-900/40",
-                border: "hover:border-orange-500/30",
+                gradient: "from-[#0066ff] to-[#00b4d8]",
+                glow: "hover:shadow-[#0066ff]/20",
+                border: "hover:border-[#00b4d8]/40",
                 items: [
                   { name: "VS Code", desc: "Éditeur de code principal" },
                   { name: "Git & GitHub", desc: "Versioning & collaboration" },
