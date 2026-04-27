@@ -421,46 +421,47 @@ function App() {
       </section>
 
       {/* Technologies Section */}
-      <section id="technologies" className="py-20 md:py-28 relative overflow-hidden" style={{background: 'linear-gradient(135deg, #0a0f1e 0%, #0d1635 50%, #071428 100%)'}}>
-        {/* Animated grid background */}
-        <div className="absolute inset-0 opacity-[0.04]" style={{backgroundImage: 'linear-gradient(#4f8fff 1px, transparent 1px), linear-gradient(90deg, #4f8fff 1px, transparent 1px)', backgroundSize: '60px 60px'}} />
-        {/* Glow orbs */}
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#0066ff]/20 rounded-full blur-[120px] -z-0" />
-        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-[#00b4d8]/15 rounded-full blur-[100px] -z-0" />
-
-        <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6">
+      <section id="technologies" className="py-16 md:py-24 relative bg-slate-50 border-t border-slate-100 overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,#0066ff06,transparent_55%),radial-gradient(ellipse_at_bottom_left,#00b4d806,transparent_55%)] pointer-events-none" />
+        
+        <div className="max-w-7xl mx-auto px-4 md:px-8">
           {/* Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <div className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm text-[#4f98ff] text-xs font-bold tracking-[0.2em] uppercase mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#4f98ff] animate-pulse shadow-[0_0_8px_#4f98ff]" />
-              Stack Technique
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }} className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0066ff]/10 border border-[#0066ff]/20 text-[#0066ff] text-xs font-bold tracking-widest uppercase mb-5">
+              <span className="w-2 h-2 rounded-full bg-[#0066ff] animate-pulse" /> Stack Technique
             </div>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-5 text-white leading-tight">
-              Technologies &{' '}
-              <span className="bg-gradient-to-r from-[#4f98ff] to-[#00d4ff] bg-clip-text text-transparent">
-                Bibliothèques
-              </span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-space mb-4 text-slate-900">
+              Technologies & <span className="text-gradient">Bibliothèques</span>
             </h2>
-            <p className="text-slate-400 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-              L'ensemble des outils, frameworks et bibliothèques qui propulsent notre robot de compétition vers l'excellence.
+            <p className="text-slate-500 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
+              L'ensemble des outils, frameworks et bibliothèques qui propulsent notre robot de compétition.
             </p>
           </motion.div>
 
-          {/* Tech Groups */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          {/* Stats strip */}
+          <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }} viewport={{ once: true }}
+            className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-14">
+            {[
+              { value: "4", label: "Catégories", color: "text-blue-600", bar: "from-blue-500 to-cyan-500" },
+              { value: "16", label: "Technologies", color: "text-purple-600", bar: "from-purple-500 to-pink-500" },
+              { value: "100%", label: "Open Source", color: "text-green-600", bar: "from-green-500 to-emerald-500" },
+              { value: "2026", label: "Compétition", color: "text-orange-600", bar: "from-orange-500 to-amber-500" },
+            ].map((s, i) => (
+              <div key={i} className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm flex flex-col gap-1">
+                <div className={`text-2xl md:text-3xl font-extrabold font-space ${s.color}`}>{s.value}</div>
+                <div className="text-slate-500 text-xs font-semibold uppercase tracking-wider">{s.label}</div>
+                <div className={`h-1 rounded-full bg-gradient-to-r ${s.bar} mt-2 opacity-60`} />
+              </div>
+            ))}
+          </motion.div>
+
+          {/* Tech groups */}
+          <div className="space-y-10">
             {[
               {
-                category: "Systèmes Embarqués",
-                icon: "⚡",
-                accent: "#4f98ff",
-                glow: "rgba(79,152,255,0.15)",
-                border: "rgba(79,152,255,0.2)",
+                category: "Systèmes Embarqués", emoji: "🔌",
+                color: "from-blue-500 to-cyan-500", glow: "hover:shadow-blue-100",
+                tag: "bg-blue-50 text-blue-700 border-blue-200",
                 items: [
                   { name: "Arduino IDE", desc: "Programmation microcontrôleurs" },
                   { name: "ESP-IDF", desc: "SDK officiel ESP32" },
@@ -469,24 +470,20 @@ function App() {
                 ]
               },
               {
-                category: "IA & Vision par Ordinateur",
-                icon: "🧠",
-                accent: "#a855f7",
-                glow: "rgba(168,85,247,0.15)",
-                border: "rgba(168,85,247,0.2)",
+                category: "IA & Vision par Ordinateur", emoji: "🤖",
+                color: "from-purple-500 to-pink-500", glow: "hover:shadow-purple-100",
+                tag: "bg-purple-50 text-purple-700 border-purple-200",
                 items: [
                   { name: "OpenCV", desc: "Traitement d'images en temps réel" },
                   { name: "TensorFlow Lite", desc: "Inférence ML embarquée" },
-                  { name: "Python 3", desc: "Script IA & automatisation" },
+                  { name: "Python", desc: "Script IA & automatisation" },
                   { name: "NumPy", desc: "Calcul matriciel & traitement" },
                 ]
               },
               {
-                category: "Communication & Réseau",
-                icon: "📡",
-                accent: "#10b981",
-                glow: "rgba(16,185,129,0.15)",
-                border: "rgba(16,185,129,0.2)",
+                category: "Communication & Réseau", emoji: "📡",
+                color: "from-green-500 to-emerald-500", glow: "hover:shadow-green-100",
+                tag: "bg-green-50 text-green-700 border-green-200",
                 items: [
                   { name: "MQTT", desc: "Protocole IoT léger" },
                   { name: "Wi-Fi (ESP32)", desc: "Connexion sans fil" },
@@ -495,11 +492,9 @@ function App() {
                 ]
               },
               {
-                category: "Logiciels & Outils",
-                icon: "🛠",
-                accent: "#f59e0b",
-                glow: "rgba(245,158,11,0.15)",
-                border: "rgba(245,158,11,0.2)",
+                category: "Logiciels & Outils", emoji: "🛠️",
+                color: "from-orange-500 to-amber-500", glow: "hover:shadow-orange-100",
+                tag: "bg-orange-50 text-orange-700 border-orange-200",
                 items: [
                   { name: "VS Code", desc: "Éditeur de code principal" },
                   { name: "Git & GitHub", desc: "Versioning & collaboration" },
@@ -508,47 +503,35 @@ function App() {
                 ]
               },
             ].map((group, gi) => (
-              <motion.div
-                key={gi}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: gi * 0.1 }}
-                viewport={{ once: true }}
-                className="rounded-2xl p-6 md:p-7 relative overflow-hidden"
-                style={{
-                  background: `linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.02) 100%)`,
-                  border: `1px solid ${group.border}`,
-                  boxShadow: `0 0 40px ${group.glow}, inset 0 1px 0 rgba(255,255,255,0.06)`,
-                  backdropFilter: 'blur(12px)'
-                }}
-              >
-                {/* Corner glow */}
-                <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full blur-[60px]" style={{background: group.glow}} />
-                
+              <motion.div key={gi} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: gi * 0.08 }} viewport={{ once: true }}>
                 {/* Category header */}
-                <div className="flex items-center gap-3 mb-6 relative z-10">
-                  <div className="w-10 h-10 rounded-xl flex items-center justify-center text-lg" style={{background: `rgba(255,255,255,0.06)`, border: `1px solid ${group.border}`}}>
-                    {group.icon}
-                  </div>
-                  <div>
-                    <p className="text-white font-bold text-base tracking-tight">{group.category}</p>
-                    <div className="w-12 h-0.5 rounded-full mt-1" style={{background: `linear-gradient(90deg, ${group.accent}, transparent)`}} />
-                  </div>
+                <div className="flex items-center gap-3 mb-5">
+                  <span className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-xl border text-xs font-bold tracking-wide ${group.tag}`}>
+                    <span>{group.emoji}</span> {group.category}
+                  </span>
+                  <div className={`flex-1 h-px bg-gradient-to-r ${group.color} opacity-20`} />
+                  <span className="text-xs text-slate-400 font-medium">{group.items.length} outils</span>
                 </div>
 
-                {/* Tech items */}
-                <div className="grid grid-cols-2 gap-3 relative z-10">
+                {/* Cards grid */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 md:gap-4">
                   {group.items.map((tech, ti) => (
                     <motion.div
                       key={ti}
-                      whileHover={{ scale: 1.03, y: -2 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 20 }}
-                      className="rounded-xl p-3.5 cursor-default"
-                      style={{background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)'}}
+                      whileHover={{ y: -5 }}
+                      transition={{ type: "spring", stiffness: 350, damping: 20 }}
+                      className={`relative bg-white border border-slate-200 rounded-2xl p-4 md:p-5 flex flex-col gap-3 shadow-sm hover:shadow-xl hover:border-slate-300 transition-all duration-300 cursor-default overflow-hidden group ${group.glow}`}
                     >
-                      <div className="w-1.5 h-1.5 rounded-full mb-2.5" style={{background: group.accent, boxShadow: `0 0 6px ${group.accent}`}} />
-                      <p className="font-semibold text-white text-sm mb-0.5">{tech.name}</p>
-                      <p className="text-slate-500 text-xs leading-relaxed">{tech.desc}</p>
+                      {/* Top accent bar */}
+                      <div className={`absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r ${group.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
+                      {/* Number badge */}
+                      <div className={`w-7 h-7 rounded-lg bg-gradient-to-br ${group.color} flex items-center justify-center text-white text-[10px] font-extrabold shadow-sm`}>
+                        {String(ti + 1).padStart(2, '0')}
+                      </div>
+                      <div>
+                        <p className="font-bold text-slate-800 text-sm md:text-base leading-tight">{tech.name}</p>
+                        <p className="text-slate-400 text-xs leading-snug mt-1">{tech.desc}</p>
+                      </div>
                     </motion.div>
                   ))}
                 </div>
