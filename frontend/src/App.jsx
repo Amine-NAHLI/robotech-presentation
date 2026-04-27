@@ -460,39 +460,69 @@ function App() {
             {[
               {
                 category: "Software Raspberry Pi", icon: <Cpu size={44} strokeWidth={1.5} />, num: "01",
-                gradient: "from-[#0066ff] to-[#00b4d8]",
-                glow: "hover:shadow-[#0066ff]/20",
-                border: "hover:border-[#00b4d8]/40",
-                items: [
-                  { name: "Pi OS & Python 3.11", desc: "Serveur Flask (Stream Web + API)" },
-                  { name: "Caméra & Vision", desc: "picamera2 (IMX219) & opencv-cv2" },
-                  { name: "Matériel & I/O", desc: "luma.oled (SH1106) & pyserial (ESP32)" },
-                  { name: "Accès & Requêtes", desc: "VS Code SSH Remote & HTTP requests" },
-                ]
+                gradient: "from-[#0066ff] to-[#00b4d8]", glow: "hover:shadow-[#0066ff]/20", border: "hover:border-[#00b4d8]/40",
+                content: `Système        : Raspberry Pi OS (Debian Linux)
+Langage        : Python 3.11
+Accès distant  : SSH via VS Code Remote (depuis PC Windows)
+
+Librairies Pi :
+  picamera2    → capture caméra IMX219
+  flask        → serveur web (stream + API)
+  opencv-cv2   → traitement image + stream
+  luma.oled    → contrôle écran OLED SH1106
+  pyserial     → communication Serial USB vers ESP32
+  requests     → envoie sons au PC via HTTP`
               },
               {
-                category: "IA YOLOv8 & Windows 11", icon: <BrainCircuit size={44} strokeWidth={1.5} />, num: "02",
-                gradient: "from-[#0066ff] to-[#00b4d8]",
-                glow: "hover:shadow-[#00b4d8]/20",
-                border: "hover:border-[#0066ff]/40",
-                items: [
-                  { name: "Modèle YOLOv8l", desc: "6 classes (stop, feux...) via ultralytics & torch" },
-                  { name: "Outils Dataset IA", desc: "Roboflow & Google Colab (GPU 100 epochs)" },
-                  { name: "Interaction Vocale", desc: "gTTS (voix FR) & module audio playsound" },
-                  { name: "VS Code (Python 3.12)", desc: "OpenCV (scan QR) & Flask client (Port 5050)" },
-                ]
+                category: "Software Windows", icon: <BrainCircuit size={44} strokeWidth={1.5} />, num: "02",
+                gradient: "from-[#0066ff] to-[#00b4d8]", glow: "hover:shadow-[#00b4d8]/20", border: "hover:border-[#0066ff]/40",
+                content: `Système        : Windows 10/11
+Langage        : Python 3.12
+IDE            : VS Code
+
+Librairies PC :
+  ultralytics  → YOLO v8 détection objets
+  opencv-cv2   → affichage stream + scan QR
+  gtts         → Google Text-to-Speech (voix française)
+  playsound    → joue les fichiers MP3
+  requests     → envoie commandes au Pi
+  flask        → reçoit sons depuis Pi (port 5050)
+  torch        → moteur deep learning pour YOLO
+
+Modèle base    : YOLOv8l (large) — yolov8l.pt
+Framework      : Ultralytics YOLOv8
+
+Dataset :
+  6 classes entraînées :
+  0 = stop, 1 = vitesse_80, 2 = feux_rouge
+  3 = feux_vert, 4 = feux_orange, 5 = bart_simpson
+
+Outils dataset :
+  Roboflow      → annotation images + export YOLO format
+  Google Colab  → entraînement GPU gratuit
+
+Commande entraînement :
+  yolo train model=yolov8l.pt data=dataset.yaml epochs=100 imgsz=416
+
+Résultat :
+  robot_final.pt → modèle entraîné final`
               },
               {
-                category: "Embarqué ESP32 & Réseau", icon: <Wifi size={44} strokeWidth={1.5} />, num: "03",
-                gradient: "from-[#0066ff] to-[#00b4d8]",
-                glow: "hover:shadow-[#0066ff]/20",
-                border: "hover:border-[#00b4d8]/40",
-                items: [
-                  { name: "ESP32 Dev (C++)", desc: "Arduino IDE 2.3.8 (ESP32Servo)" },
-                  { name: "Contrôle Capteurs", desc: "Servomoteurs, Suiveur de Ligne & Ultrasons" },
-                  { name: "Connexion Filaire", desc: "Câble USB Serial Pi ←→ ESP32 (115200 baud)" },
-                  { name: "Réseau LAN WiFi", desc: "Hotspot Windows (192.168.137.x) Server 5000" },
-                ]
+                category: "Embarqué & Réseau", icon: <Wifi size={44} strokeWidth={1.5} />, num: "03",
+                gradient: "from-[#0066ff] to-[#00b4d8]", glow: "hover:shadow-[#0066ff]/20", border: "hover:border-[#00b4d8]/40",
+                content: `IDE            : Arduino IDE 2.3.8
+Langage        : C++ (Arduino)
+Board          : ESP32 Dev Module
+Baud Rate      : 115200
+
+Librairies Arduino :
+  ESP32Servo   → contrôle servo moteur + capteur de suiveur de ligne et ultrason
+
+Réseau & Communication :
+PC ←→ Pi      : WiFi hotspot Windows (192.168.137.x)
+                Flask HTTP port 5000 (stream + API)
+
+Pi ←→ ESP32   : Câble USB Serial (115200 baud)`
               },
             ].map((group, gi) => (
               <motion.div
@@ -502,40 +532,25 @@ function App() {
                 transition={{ duration: 0.55, delay: gi * 0.1 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -3 }}
-                className={`relative bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl ${group.glow} ${group.border} transition-all duration-300 ${gi === 2 ? 'md:col-span-2 md:w-[70%] md:mx-auto' : ''}`}
+                className={`relative bg-[#020817] border border-slate-800 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl ${group.glow} hover:border-[#0066ff]/40 transition-all duration-300 ${gi === 2 ? 'md:col-span-2 lg:col-span-1 lg:w-full md:mx-auto lg:mx-0' : ''}`}
               >
                 {/* Card header */}
-                <div className={`bg-gradient-to-br ${group.gradient} p-6 relative overflow-hidden`}>
+                <div className={`bg-gradient-to-br ${group.gradient} p-5 relative overflow-hidden`}>
                   <div className="absolute inset-0 opacity-20 bg-[linear-gradient(135deg,rgba(255,255,255,0.2)_0%,transparent_60%)]" />
                   <div className="flex items-start justify-between relative">
                     <div>
-                      <span className="text-white/60 text-xs font-mono font-bold tracking-widest">{group.num} / 03</span>
-                      <h3 className="text-white text-xl md:text-2xl font-bold font-space mt-1">{group.category}</h3>
+                      <span className="text-white/60 text-[10px] font-mono font-bold tracking-widest">{group.num} / 03</span>
+                      <h3 className="text-white text-lg md:text-xl font-bold font-space mt-1">{group.category}</h3>
                     </div>
                     <span className="opacity-90 select-none text-white/90 drop-shadow-sm">{group.icon}</span>
                   </div>
-                  <div className="mt-4 flex items-center gap-1.5">
-                    {group.items.map((_, i) => (
-                      <div key={i} className="flex-1 h-1 rounded-full bg-white/30" />
-                    ))}
-                  </div>
                 </div>
 
-                {/* Tech list */}
-                <div className="p-5 space-y-3">
-                  {group.items.map((tech, ti) => (
-                    <div key={ti} className="flex items-center gap-3 group/item">
-                      <div className={`w-6 h-6 rounded-md bg-gradient-to-br ${group.gradient} opacity-80 flex items-center justify-center flex-shrink-0`}>
-                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                          <path d="M2 5l2 2 4-4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <span className="text-slate-800 text-sm font-semibold">{tech.name}</span>
-                        <span className="text-slate-400 text-xs ml-2 hidden sm:inline">{tech.desc}</span>
-                      </div>
-                    </div>
-                  ))}
+                {/* Exact Text Content Block */}
+                <div className="p-5 md:p-6 bg-[#020817]">
+                  <pre className="font-mono text-[11px] sm:text-[13px] text-slate-300 leading-[1.6] overflow-x-auto whitespace-pre-wrap selection:bg-[#0066ff]/30">
+                    {group.content}
+                  </pre>
                 </div>
               </motion.div>
             ))}
