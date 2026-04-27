@@ -425,9 +425,9 @@ function App() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,#0066ff06,transparent_55%),radial-gradient(ellipse_at_bottom_left,#00b4d806,transparent_55%)] pointer-events-none" />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#0066ff]/4 blur-[120px] rounded-full pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto px-4 md:px-8 relative">
+        <div className="w-full relative">
           {/* Header */}
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} viewport={{ once: true }} className="text-center mb-16">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} viewport={{ once: true }} className="text-center mb-16 max-w-7xl mx-auto px-4">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0066ff]/10 border border-[#0066ff]/20 text-[#0066ff] text-xs font-bold tracking-widest uppercase mb-6">
               <span className="w-2 h-2 rounded-full bg-[#0066ff] animate-pulse" /> Stack Technique
             </div>
@@ -441,7 +441,7 @@ function App() {
 
           {/* Stats row */}
           <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.15 }} viewport={{ once: true }}
-            className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-12">
+            className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-12 max-w-7xl mx-auto px-4">
             {[
               { value: "3", label: "Catégories", gradient: "from-blue-500 to-cyan-400" },
               { value: "12", label: "Technologies", gradient: "from-purple-500 to-pink-400" },
@@ -456,7 +456,7 @@ function App() {
           </motion.div>
 
           {/* Bento 2x2 panel grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 w-full max-w-none px-4 lg:px-6 mx-auto">
             {[
               {
                 category: "IA & Vision par Ordinateur", emoji: "🤖", num: "01",
