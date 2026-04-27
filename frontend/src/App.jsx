@@ -421,105 +421,140 @@ function App() {
       </section>
 
       {/* Technologies Section */}
-      <section id="technologies" className="py-16 md:py-24 relative bg-white border-t border-slate-100 overflow-hidden">
-        {/* Background decoration */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,#0066ff08,transparent_60%),radial-gradient(ellipse_at_bottom_left,#00b4d808,transparent_60%)]" />
-        
-        <div className="max-w-7xl mx-auto px-4 md:px-6">
+      <section id="technologies" className="py-20 md:py-28 relative overflow-hidden" style={{background: 'linear-gradient(135deg, #0a0f1e 0%, #0d1635 50%, #071428 100%)'}}>
+        {/* Animated grid background */}
+        <div className="absolute inset-0 opacity-[0.04]" style={{backgroundImage: 'linear-gradient(#4f8fff 1px, transparent 1px), linear-gradient(90deg, #4f8fff 1px, transparent 1px)', backgroundSize: '60px 60px'}} />
+        {/* Glow orbs */}
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#0066ff]/20 rounded-full blur-[120px] -z-0" />
+        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-[#00b4d8]/15 rounded-full blur-[100px] -z-0" />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6">
+          {/* Header */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.7 }}
             viewport={{ once: true }}
-            className="text-center mb-14"
+            className="text-center mb-16"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0066ff]/8 border border-[#0066ff]/15 text-[#0066ff] text-xs font-bold tracking-widest uppercase mb-5">
-              <span className="w-2 h-2 rounded-full bg-[#0066ff] animate-pulse" />
+            <div className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm text-[#4f98ff] text-xs font-bold tracking-[0.2em] uppercase mb-6">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#4f98ff] animate-pulse shadow-[0_0_8px_#4f98ff]" />
               Stack Technique
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-space mb-4 text-slate-900">
-              Technologies & <span className="text-gradient">Bibliothèques</span>
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-5 text-white leading-tight">
+              Technologies &{' '}
+              <span className="bg-gradient-to-r from-[#4f98ff] to-[#00d4ff] bg-clip-text text-transparent">
+                Bibliothèques
+              </span>
             </h2>
-            <p className="text-slate-500 text-sm md:text-base max-w-2xl mx-auto">
-              L'ensemble des outils, frameworks et bibliothèques qui propulsent notre robot de compétition.
+            <p className="text-slate-400 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+              L'ensemble des outils, frameworks et bibliothèques qui propulsent notre robot de compétition vers l'excellence.
             </p>
           </motion.div>
 
-          {[
-            {
-              category: "🔌 Systèmes Embarqués",
-              color: "from-blue-500 to-cyan-500",
-              bg: "bg-blue-50",
-              border: "border-blue-100",
-              items: [
-                { name: "Arduino IDE", desc: "Programmation microcontrôleurs" },
-                { name: "ESP-IDF", desc: "SDK officiel ESP32" },
-                { name: "Raspberry Pi OS", desc: "Linux embarqué pour Rpi" },
-                { name: "FreeRTOS", desc: "OS temps réel pour ESP32" },
-              ]
-            },
-            {
-              category: "🤖 IA & Vision par Ordinateur",
-              color: "from-purple-500 to-pink-500",
-              bg: "bg-purple-50",
-              border: "border-purple-100",
-              items: [
-                { name: "OpenCV", desc: "Traitement d'images en temps réel" },
-                { name: "TensorFlow Lite", desc: "Inférence ML embarquée" },
-                { name: "Python", desc: "Script IA & automatisation" },
-                { name: "NumPy", desc: "Calcul matriciel & traitement" },
-              ]
-            },
-            {
-              category: "📡 Communication & Réseau",
-              color: "from-green-500 to-emerald-500",
-              bg: "bg-green-50",
-              border: "border-green-100",
-              items: [
-                { name: "MQTT", desc: "Protocole IoT léger" },
-                { name: "Wi-Fi (ESP32)", desc: "Connexion sans fil" },
-                { name: "I2C / SPI", desc: "Bus de communication capteurs" },
-                { name: "UART / Serial", desc: "Communication série" },
-              ]
-            },
-            {
-              category: "🛠️ Logiciels & Outils",
-              color: "from-orange-500 to-amber-500",
-              bg: "bg-orange-50",
-              border: "border-orange-100",
-              items: [
-                { name: "VS Code", desc: "Éditeur de code principal" },
-                { name: "Git & GitHub", desc: "Versioning & collaboration" },
-                { name: "Fusion 360", desc: "Modélisation 3D CAO" },
-                { name: "KiCad", desc: "Conception de circuits PCB" },
-              ]
-            },
-          ].map((group, gi) => (
-            <motion.div
-              key={gi}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: gi * 0.1 }}
-              viewport={{ once: true }}
-              className="mb-10"
-            >
-              <h3 className="text-base font-bold text-slate-700 mb-4 tracking-wide">{group.category}</h3>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 md:gap-4">
-                {group.items.map((tech, ti) => (
-                  <motion.div
-                    key={ti}
-                    whileHover={{ y: -4, scale: 1.02 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                    className={`${group.bg} ${group.border} border rounded-2xl p-4 md:p-5 flex flex-col gap-2 cursor-default group`}
-                  >
-                    <div className={`w-8 h-1.5 rounded-full bg-gradient-to-r ${group.color} group-hover:w-full transition-all duration-500`} />
-                    <p className="font-bold text-slate-800 text-sm md:text-base">{tech.name}</p>
-                    <p className="text-slate-500 text-xs leading-snug">{tech.desc}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          ))}
+          {/* Tech Groups */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+            {[
+              {
+                category: "Systèmes Embarqués",
+                icon: "⚡",
+                accent: "#4f98ff",
+                glow: "rgba(79,152,255,0.15)",
+                border: "rgba(79,152,255,0.2)",
+                items: [
+                  { name: "Arduino IDE", desc: "Programmation microcontrôleurs" },
+                  { name: "ESP-IDF", desc: "SDK officiel ESP32" },
+                  { name: "Raspberry Pi OS", desc: "Linux embarqué pour Rpi" },
+                  { name: "FreeRTOS", desc: "OS temps réel pour ESP32" },
+                ]
+              },
+              {
+                category: "IA & Vision par Ordinateur",
+                icon: "🧠",
+                accent: "#a855f7",
+                glow: "rgba(168,85,247,0.15)",
+                border: "rgba(168,85,247,0.2)",
+                items: [
+                  { name: "OpenCV", desc: "Traitement d'images en temps réel" },
+                  { name: "TensorFlow Lite", desc: "Inférence ML embarquée" },
+                  { name: "Python 3", desc: "Script IA & automatisation" },
+                  { name: "NumPy", desc: "Calcul matriciel & traitement" },
+                ]
+              },
+              {
+                category: "Communication & Réseau",
+                icon: "📡",
+                accent: "#10b981",
+                glow: "rgba(16,185,129,0.15)",
+                border: "rgba(16,185,129,0.2)",
+                items: [
+                  { name: "MQTT", desc: "Protocole IoT léger" },
+                  { name: "Wi-Fi (ESP32)", desc: "Connexion sans fil" },
+                  { name: "I2C / SPI", desc: "Bus de communication capteurs" },
+                  { name: "UART / Serial", desc: "Communication série" },
+                ]
+              },
+              {
+                category: "Logiciels & Outils",
+                icon: "🛠",
+                accent: "#f59e0b",
+                glow: "rgba(245,158,11,0.15)",
+                border: "rgba(245,158,11,0.2)",
+                items: [
+                  { name: "VS Code", desc: "Éditeur de code principal" },
+                  { name: "Git & GitHub", desc: "Versioning & collaboration" },
+                  { name: "Fusion 360", desc: "Modélisation 3D CAO" },
+                  { name: "KiCad", desc: "Conception de circuits PCB" },
+                ]
+              },
+            ].map((group, gi) => (
+              <motion.div
+                key={gi}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: gi * 0.1 }}
+                viewport={{ once: true }}
+                className="rounded-2xl p-6 md:p-7 relative overflow-hidden"
+                style={{
+                  background: `linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.02) 100%)`,
+                  border: `1px solid ${group.border}`,
+                  boxShadow: `0 0 40px ${group.glow}, inset 0 1px 0 rgba(255,255,255,0.06)`,
+                  backdropFilter: 'blur(12px)'
+                }}
+              >
+                {/* Corner glow */}
+                <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full blur-[60px]" style={{background: group.glow}} />
+                
+                {/* Category header */}
+                <div className="flex items-center gap-3 mb-6 relative z-10">
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center text-lg" style={{background: `rgba(255,255,255,0.06)`, border: `1px solid ${group.border}`}}>
+                    {group.icon}
+                  </div>
+                  <div>
+                    <p className="text-white font-bold text-base tracking-tight">{group.category}</p>
+                    <div className="w-12 h-0.5 rounded-full mt-1" style={{background: `linear-gradient(90deg, ${group.accent}, transparent)`}} />
+                  </div>
+                </div>
+
+                {/* Tech items */}
+                <div className="grid grid-cols-2 gap-3 relative z-10">
+                  {group.items.map((tech, ti) => (
+                    <motion.div
+                      key={ti}
+                      whileHover={{ scale: 1.03, y: -2 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 20 }}
+                      className="rounded-xl p-3.5 cursor-default"
+                      style={{background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)'}}
+                    >
+                      <div className="w-1.5 h-1.5 rounded-full mb-2.5" style={{background: group.accent, boxShadow: `0 0 6px ${group.accent}`}} />
+                      <p className="font-semibold text-white text-sm mb-0.5">{tech.name}</p>
+                      <p className="text-slate-500 text-xs leading-relaxed">{tech.desc}</p>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
