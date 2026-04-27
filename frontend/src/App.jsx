@@ -502,7 +502,7 @@ function App() {
                 transition={{ duration: 0.55, delay: gi * 0.1 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -3 }}
-                className={`relative bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl ${group.glow} ${group.border} transition-all duration-300`}
+                className={`relative bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl ${group.glow} ${group.border} transition-all duration-300 ${gi === 2 ? 'md:col-span-2 md:w-[70%] md:mx-auto' : ''}`}
               >
                 {/* Card header */}
                 <div className={`bg-gradient-to-br ${group.gradient} p-6 relative overflow-hidden`}>
