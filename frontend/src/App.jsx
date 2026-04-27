@@ -443,8 +443,8 @@ function App() {
           <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.15 }} viewport={{ once: true }}
             className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-12">
             {[
-              { value: "4", label: "Catégories", gradient: "from-blue-500 to-cyan-400" },
-              { value: "16", label: "Technologies", gradient: "from-purple-500 to-pink-400" },
+              { value: "3", label: "Catégories", gradient: "from-blue-500 to-cyan-400" },
+              { value: "12", label: "Technologies", gradient: "from-purple-500 to-pink-400" },
               { value: "100%", label: "Open Source", gradient: "from-green-500 to-emerald-400" },
               { value: "2026", label: "Compétition", gradient: "from-orange-500 to-amber-400" },
             ].map((s, i) => (
@@ -459,22 +459,10 @@ function App() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
             {[
               {
-                category: "Systèmes Embarqués", emoji: "🔌", num: "01",
-                gradient: "from-blue-600 to-cyan-500",
-                glow: "hover:shadow-blue-900/40",
-                border: "hover:border-blue-500/30",
-                items: [
-                  { name: "Arduino IDE", desc: "Programmation microcontrôleurs" },
-                  { name: "ESP-IDF", desc: "SDK officiel ESP32" },
-                  { name: "Raspberry Pi OS", desc: "Linux embarqué pour Rpi" },
-                  { name: "FreeRTOS", desc: "OS temps réel pour ESP32" },
-                ]
-              },
-              {
-                category: "IA & Vision par Ordinateur", emoji: "🤖", num: "02",
+                category: "IA & Vision par Ordinateur", emoji: "🤖", num: "01",
                 gradient: "from-purple-600 to-pink-500",
-                glow: "hover:shadow-purple-900/40",
-                border: "hover:border-purple-500/30",
+                glow: "hover:shadow-purple-100",
+                border: "hover:border-purple-300",
                 items: [
                   { name: "OpenCV", desc: "Traitement d'images en temps réel" },
                   { name: "TensorFlow Lite", desc: "Inférence ML embarquée" },
@@ -483,7 +471,7 @@ function App() {
                 ]
               },
               {
-                category: "Communication & Réseau", emoji: "📡", num: "03",
+                category: "Communication & Réseau", emoji: "📡", num: "02",
                 gradient: "from-green-600 to-emerald-400",
                 glow: "hover:shadow-green-900/40",
                 border: "hover:border-green-500/30",
@@ -495,7 +483,7 @@ function App() {
                 ]
               },
               {
-                category: "Logiciels & Outils", emoji: "🛠️", num: "04",
+                category: "Logiciels & Outils", emoji: "🛠️", num: "03",
                 gradient: "from-orange-500 to-amber-400",
                 glow: "hover:shadow-orange-900/40",
                 border: "hover:border-orange-500/30",
@@ -521,7 +509,7 @@ function App() {
                   <div className="absolute inset-0 opacity-20 bg-[linear-gradient(135deg,rgba(255,255,255,0.2)_0%,transparent_60%)]" />
                   <div className="flex items-start justify-between relative">
                     <div>
-                      <span className="text-white/60 text-xs font-mono font-bold tracking-widest">{group.num} / 04</span>
+                      <span className="text-white/60 text-xs font-mono font-bold tracking-widest">{group.num} / 03</span>
                       <h3 className="text-white text-xl md:text-2xl font-bold font-space mt-1">{group.category}</h3>
                     </div>
                     <span className="text-4xl md:text-5xl opacity-80 select-none">{group.emoji}</span>
