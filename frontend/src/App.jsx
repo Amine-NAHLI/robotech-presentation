@@ -443,10 +443,10 @@ function App() {
           <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.15 }} viewport={{ once: true }}
             className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-12 max-w-7xl mx-auto px-4">
             {[
-              { value: "3", label: "Catégories", gradient: "from-[#0066ff] to-[#00b4d8]" },
-              { value: "12", label: "Technologies", gradient: "from-[#0066ff] to-[#00b4d8]" },
-              { value: "100%", label: "Open Source", gradient: "from-[#0066ff] to-[#00b4d8]" },
-              { value: "2026", label: "Compétition", gradient: "from-[#0066ff] to-[#00b4d8]" },
+              { value: "3", label: "Systèmes", gradient: "from-[#0066ff] to-[#00b4d8]" },
+              { value: "14+", label: "Librairies", gradient: "from-[#0066ff] to-[#00b4d8]" },
+              { value: "115k", label: "Baud Rate", gradient: "from-[#0066ff] to-[#00b4d8]" },
+              { value: "6", label: "Classes IA", gradient: "from-[#0066ff] to-[#00b4d8]" },
             ].map((s, i) => (
               <div key={i} className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
                 <div className={`text-2xl md:text-3xl font-extrabold font-space bg-gradient-to-r ${s.gradient} bg-clip-text text-transparent`}>{s.value}</div>
@@ -459,39 +459,39 @@ function App() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 w-full max-w-none px-4 lg:px-6 mx-auto">
             {[
               {
-                category: "IA & Vision par Ordinateur", icon: <BrainCircuit size={44} strokeWidth={1.5} />, num: "01",
+                category: "Software Raspberry Pi", icon: <Cpu size={44} strokeWidth={1.5} />, num: "01",
                 gradient: "from-[#0066ff] to-[#00b4d8]",
                 glow: "hover:shadow-[#0066ff]/20",
                 border: "hover:border-[#00b4d8]/40",
                 items: [
-                  { name: "OpenCV", desc: "Traitement d'images en temps réel" },
-                  { name: "TensorFlow Lite", desc: "Inférence ML embarquée" },
-                  { name: "Python", desc: "Script IA & automatisation" },
-                  { name: "NumPy", desc: "Calcul matriciel & traitement" },
+                  { name: "Pi OS & Python 3.11", desc: "Serveur Flask (Stream Web + API)" },
+                  { name: "Caméra & Vision", desc: "picamera2 (IMX219) & opencv-cv2" },
+                  { name: "Matériel & I/O", desc: "luma.oled (SH1106) & pyserial (ESP32)" },
+                  { name: "Accès & Requêtes", desc: "VS Code SSH Remote & HTTP requests" },
                 ]
               },
               {
-                category: "Communication & Réseau", icon: <Wifi size={44} strokeWidth={1.5} />, num: "02",
+                category: "IA YOLOv8 & Windows 11", icon: <BrainCircuit size={44} strokeWidth={1.5} />, num: "02",
                 gradient: "from-[#0066ff] to-[#00b4d8]",
                 glow: "hover:shadow-[#00b4d8]/20",
                 border: "hover:border-[#0066ff]/40",
                 items: [
-                  { name: "MQTT", desc: "Protocole IoT léger" },
-                  { name: "Wi-Fi (ESP32)", desc: "Connexion sans fil" },
-                  { name: "I2C / SPI", desc: "Bus de communication capteurs" },
-                  { name: "UART / Serial", desc: "Communication série" },
+                  { name: "Modèle YOLOv8l", desc: "6 classes (stop, feux...) via ultralytics & torch" },
+                  { name: "Outils Dataset IA", desc: "Roboflow & Google Colab (GPU 100 epochs)" },
+                  { name: "Interaction Vocale", desc: "gTTS (voix FR) & module audio playsound" },
+                  { name: "VS Code (Python 3.12)", desc: "OpenCV (scan QR) & Flask client (Port 5050)" },
                 ]
               },
               {
-                category: "Logiciels & Outils", icon: <Wrench size={44} strokeWidth={1.5} />, num: "03",
+                category: "Embarqué ESP32 & Réseau", icon: <Wifi size={44} strokeWidth={1.5} />, num: "03",
                 gradient: "from-[#0066ff] to-[#00b4d8]",
                 glow: "hover:shadow-[#0066ff]/20",
                 border: "hover:border-[#00b4d8]/40",
                 items: [
-                  { name: "VS Code", desc: "Éditeur de code principal" },
-                  { name: "Git & GitHub", desc: "Versioning & collaboration" },
-                  { name: "Fusion 360", desc: "Modélisation 3D CAO" },
-                  { name: "KiCad", desc: "Conception de circuits PCB" },
+                  { name: "ESP32 Dev (C++)", desc: "Arduino IDE 2.3.8 (ESP32Servo)" },
+                  { name: "Contrôle Capteurs", desc: "Servomoteurs, Suiveur de Ligne & Ultrasons" },
+                  { name: "Connexion Filaire", desc: "Câble USB Serial Pi ←→ ESP32 (115200 baud)" },
+                  { name: "Réseau LAN WiFi", desc: "Hotspot Windows (192.168.137.x) Server 5000" },
                 ]
               },
             ].map((group, gi) => (
