@@ -227,7 +227,7 @@ function App() {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50)
-      const sections = ['hero', 'team', 'materials']
+      const sections = ['hero', 'technologies', 'team', 'materials']
       for (const id of sections.reverse()) {
         const el = document.getElementById(id)
         if (el && window.scrollY >= el.offsetTop - 120) {
@@ -280,7 +280,7 @@ function App() {
           <Logo />
           
           <div className="hidden md:flex gap-8 text-sm font-medium">
-            {[['#hero','Accueil','hero'],['#team','Jury','team'],['#materials','Composants 3D','materials']].map(([href, label, id]) => (
+            {[['#hero','Accueil','hero'],['#technologies','Technologies','technologies'],['#team','Jury','team'],['#materials','Composants 3D','materials']].map(([href, label, id]) => (
               <a
                 key={id}
                 href={href}
@@ -308,7 +308,7 @@ function App() {
 
         {isMobileMenuOpen && (
           <div className="md:hidden absolute top-full left-0 w-full bg-white/98 backdrop-blur-xl border-b border-slate-200 py-4 px-6 flex flex-col gap-1 shadow-2xl">
-            {[['#hero','Accueil','hero'],['#team','Jury','team'],['#materials','Composants 3D','materials']].map(([href, label, id]) => (
+            {[['#hero','Accueil','hero'],['#technologies','Technologies','technologies'],['#team','Jury','team'],['#materials','Composants 3D','materials']].map(([href, label, id]) => (
               <a
                 key={id}
                 href={href}
@@ -365,6 +365,109 @@ function App() {
           </motion.div>
 
 
+        </div>
+      </section>
+
+      {/* Technologies Section */}
+      <section id="technologies" className="py-16 md:py-24 relative bg-white border-t border-slate-100 overflow-hidden">
+        {/* Background decoration */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,#0066ff08,transparent_60%),radial-gradient(ellipse_at_bottom_left,#00b4d808,transparent_60%)]" />
+        
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-14"
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0066ff]/8 border border-[#0066ff]/15 text-[#0066ff] text-xs font-bold tracking-widest uppercase mb-5">
+              <span className="w-2 h-2 rounded-full bg-[#0066ff] animate-pulse" />
+              Stack Technique
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-space mb-4 text-slate-900">
+              Technologies & <span className="text-gradient">Bibliothèques</span>
+            </h2>
+            <p className="text-slate-500 text-sm md:text-base max-w-2xl mx-auto">
+              L'ensemble des outils, frameworks et bibliothèques qui propulsent notre robot de compétition.
+            </p>
+          </motion.div>
+
+          {[
+            {
+              category: "🔌 Systèmes Embarqués",
+              color: "from-blue-500 to-cyan-500",
+              bg: "bg-blue-50",
+              border: "border-blue-100",
+              items: [
+                { name: "Arduino IDE", desc: "Programmation microcontrôleurs" },
+                { name: "ESP-IDF", desc: "SDK officiel ESP32" },
+                { name: "Raspberry Pi OS", desc: "Linux embarqué pour Rpi" },
+                { name: "FreeRTOS", desc: "OS temps réel pour ESP32" },
+              ]
+            },
+            {
+              category: "🤖 IA & Vision par Ordinateur",
+              color: "from-purple-500 to-pink-500",
+              bg: "bg-purple-50",
+              border: "border-purple-100",
+              items: [
+                { name: "OpenCV", desc: "Traitement d'images en temps réel" },
+                { name: "TensorFlow Lite", desc: "Inférence ML embarquée" },
+                { name: "Python", desc: "Script IA & automatisation" },
+                { name: "NumPy", desc: "Calcul matriciel & traitement" },
+              ]
+            },
+            {
+              category: "📡 Communication & Réseau",
+              color: "from-green-500 to-emerald-500",
+              bg: "bg-green-50",
+              border: "border-green-100",
+              items: [
+                { name: "MQTT", desc: "Protocole IoT léger" },
+                { name: "Wi-Fi (ESP32)", desc: "Connexion sans fil" },
+                { name: "I2C / SPI", desc: "Bus de communication capteurs" },
+                { name: "UART / Serial", desc: "Communication série" },
+              ]
+            },
+            {
+              category: "🛠️ Logiciels & Outils",
+              color: "from-orange-500 to-amber-500",
+              bg: "bg-orange-50",
+              border: "border-orange-100",
+              items: [
+                { name: "VS Code", desc: "Éditeur de code principal" },
+                { name: "Git & GitHub", desc: "Versioning & collaboration" },
+                { name: "Fusion 360", desc: "Modélisation 3D CAO" },
+                { name: "KiCad", desc: "Conception de circuits PCB" },
+              ]
+            },
+          ].map((group, gi) => (
+            <motion.div
+              key={gi}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: gi * 0.1 }}
+              viewport={{ once: true }}
+              className="mb-10"
+            >
+              <h3 className="text-base font-bold text-slate-700 mb-4 tracking-wide">{group.category}</h3>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 md:gap-4">
+                {group.items.map((tech, ti) => (
+                  <motion.div
+                    key={ti}
+                    whileHover={{ y: -4, scale: 1.02 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                    className={`${group.bg} ${group.border} border rounded-2xl p-4 md:p-5 flex flex-col gap-2 cursor-default group`}
+                  >
+                    <div className={`w-8 h-1.5 rounded-full bg-gradient-to-r ${group.color} group-hover:w-full transition-all duration-500`} />
+                    <p className="font-bold text-slate-800 text-sm md:text-base">{tech.name}</p>
+                    <p className="text-slate-500 text-xs leading-snug">{tech.desc}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          ))}
         </div>
       </section>
 
